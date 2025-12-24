@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>FREE PRED BY KING IRSAN 🍄</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(135deg,#101820,#1b2a34);
+    color:#ddd;
+}
+
+/* MENU */
+.menu{
+    position:fixed;
+    top:15px;
+    left:15px;
+    z-index:1000;
+}
+.menu button{
+    background:#2a3b45;
+    color:#ccc;
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+}
+.menu-list{
+    display:none;
+    margin-top:8px;
+    background:rgba(0,0,0,0.75);
+    border-radius:10px;
+    overflow:hidden;
+}
+.menu-list div{
+    padding:10px 14px;
+    font-size:14px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    cursor:pointer;
+}
+.menu-list div:last-child{border-bottom:none;}
+.menu-list div:hover{background:rgba(255,255,255,0.05);}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.7);
+    z-index:2000;
+}
+.modal-box{
+    background:#1b2a34;
+    width:90%;
+    max-width:500px;
+    margin:60px auto;
+    border-radius:15px;
+    padding:20px;
+    max-height:75vh;
+    overflow-y:auto;
+}
+.modal-box h2{
+    text-align:center;
+    margin-top:0;
+}
+.empty{
+    text-align:center;
+    color:#888;
+    margin:30px 0;
+}
+.close{
+    text-align:center;
+}
+.close button{
+    background:#3a5a66;
+    border:none;
+    color:#ccc;
+    padding:10px 22px;
+    border-radius:20px;
+}
+
+/* MAIN */
+.container{
+    max-width:500px;
+    margin:auto;
+    padding:70px 20px 40px;
+}
+h1{text-align:center;margin-bottom:30px;}
+
+.card{
+    background:rgba(0,0,0,0.6);
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:18px;
+    text-align:center;
+}
+.laga{
+    font-size:20px;
+    margin-bottom:15px;
+}
+.predik{
+    padding:12px 22px;
+    border:none;
+    border-radius:25px;
+    background:#3a5a66;
+    color:#ddd;
+    font-weight:bold;
+}
+.loading{
+    display:none;
+    margin-top:14px;
+    font-size:14px;
+    color:#aaa;
+}
+.hasil{
+    margin-top:14px;
+    font-size:18px;
+    color:#9fd6c2;
+}
+
+footer{
+    text-align:center;
+    margin-top:30px;
+    font-size:12px;
+    color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+<div class="menu">
+    <button onclick="toggleMenu()">☰ MENU</button>
+    <div class="menu-list" id="menuList">
+        <div onclick="openModal()">📊 LIST KEMENANGAN</div>
+        <div onclick="goTelegram('https://t.me/irsanjamur')">💎 ORDER VVIP</div>
+        <div onclick="goTelegram('https://t.me/+SR2PWib2CVJhYTBl')">📢 JOIN GRUP TELEGRAM</div>
+    </div>
+</div>
+
+<!-- MODAL KEMENANGAN (KOSONG) -->
+<div class="modal" id="modal">
+    <div class="modal-box">
+        <h2>📊 RIWAYAT KEMENANGAN</h2>
+        <div class="empty">Belum ada data kemenangan</div>
+        <div class="close">
+            <button onclick="closeModal()">TUTUP</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+<h1>🍄 FREE PRED BY KING 🍄</h1>
+
+<!-- 5 LAGA FIX -->
+<div class="card">
+    <div class="laga">CHOUZA</div>
+    <button class="predik" onclick="predik(1,'TUNGGU NEXT LAGA')">PREDIK</button>
+    <div class="loading" id="loading1">FREE PRED BY IRSAN 🍄 TUNGGU SEBENTAR...</div>
+    <div class="hasil" id="hasil1"></div>
+</div>
+
+<div class="card">
+    <div class="laga">KAYE</div>
+    <button class="predik" onclick="predik(2,'TAFLA PC PARI GPX')">PREDIK</button>
+    <div class="loading" id="loading2">FREE PRED BY IRSAN 🍄 TUNGGU SEBENTAR...</div>
+    <div class="hasil" id="hasil2"></div>
+</div>
+
+<div class="card">
+    <div class="laga">AENK</div>
+    <button class="predik" onclick="predik(3,'TOMTZY')">PREDIK</button>
+    <div class="loading" id="loading3">FREE PRED BY IRSAN 🍄 TUNGGU SEBENTAR...</div>
+    <div class="hasil" id="hasil3"></div>
+</div>
+
+<div class="card">
+    <div class="laga">MILKY</div>
+    <button class="predik" onclick="predik(4,'CAMAT AVAI')">PREDIK</button>
+    <div class="loading" id="loading4">FREE PRED BY IRSAN 🍄 TUNGGU SEBENTAR...</div>
+    <div class="hasil" id="hasil4"></div>
+</div>
+
+<div class="card">
+    <div class="laga">ALAN</div>
+    <button class="predik" onclick="predik(5,'TUNGGU NEXT LAGA')">PREDIK</button>
+    <div class="loading" id="loading5">FREE PRED BY IRSAN 🍄 TUNGGU SEBENTAR...</div>
+    <div class="hasil" id="hasil5"></div>
+</div>
+
+<footer>©irsanjamur</footer>
+</div>
+
+<script>
+let sudahPredik = false; // kunci agar hanya bisa 1 prediksi
+
+function toggleMenu(){
+    const m=document.getElementById("menuList");
+    m.style.display=m.style.display==="block"?"none":"block";
+}
+
+function predik(n,nama){
+    if(sudahPredik) return; // jika sudah predik, hentikan
+
+    sudahPredik = true; // kunci prediksi
+
+    // nonaktifkan semua tombol predik
+    const buttons = document.querySelectorAll(".predik");
+    buttons.forEach(btn => {
+        btn.disabled = true;
+        btn.style.opacity = "0.5";
+        btn.style.cursor = "not-allowed";
+    });
+
+    const l=document.getElementById("loading"+n);
+    const h=document.getElementById("hasil"+n);
+
+    l.style.display="block";
+
+    setTimeout(()=>{
+        l.style.display="none";
+        h.innerText="PREDIKSI MENANG: "+nama;
+    },2000);
+}
+
+function openModal(){
+    document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display="none";
+}
+
+function goTelegram(link){
+    window.location.href=link;
+}
+</script>
+
+
+</body>
+</html>
